@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagged Templates</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f49097;
+            color: #f2f5ff;
+            text-shadow: 1px 1px rgba(0, 0, 0, .5);
+            font-size: 2em;
+        }
+        strong{
+            color: #f5e960;
+            padding: .15em .4em;
+            background: #dfb2f4;
+            border-radius: 20px;
+            border: solid 2px #f2f5ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- <p>El trabajo duro supera al talento natural</p> -->
+    <!-- Aplicamos antes de que se acabe el body -->
+    <script>
+        // llamamos una funcion con los backticks
+        const nombre = "Pene"
+        function taggedTemplate(strings, param1, param2) {
+            console.log(strings, param1, param2);
+        }
+
+        taggedTemplate`Hola ${nombre} ${'!'}` 
+
+        // Podemos hacerlo con un rest operator
+        // ...dynamicValues
+
+        function dynamicTemplate(strings, ...dynamicValues) {
+            console.log(strings, dynamicValues);
+        }
+
+        dynamicTemplate`PENE 1 PENE 2 ${'dynamic 1'} ${'dynamic 2'}`
+        // Ahora dynamic 1 y 2 son un array tambien
+
+        function trabajoTalento(strings, ...dynamicValues){
+            console.log(strings, dynamicValues);
+            let newContent = '';
+            let composedContent = '';
+            // iterar los strings
+            strings.forEach((element, index) => {
+                // para que no ponga undefined, que exista
+                if(dynamicValues[index]){
+
+                    // console.log(element, index);
+                    // esto es trabajo duro y talento natural
+                    // console.log(dynamicValues[index]);
+                    // clg de mi string
+                    // console.log(strings);
+                    const strong = `<strong>${dynamicValues[index]}</strong>`
+                    newContent = newContent + element + strong
+
+                }
+                // Tambien puedo hacerlo con ternarios
+                const strong2 = dynamicValues[index] ? `<strong>${dynamicValues[index]}</strong>` : ``;
+                // newContent = newContent + element + strong2;
+                composedContent += `${element} ${strong2}`;
+            });
+            console.log(composedContent);
+            // console.log(newContent);
+            return `<p>${composedContent}</p>`
+        }
+
+        const message= trabajoTalento`El ${'trabajo duro'} supera al ${'talento natural'}`
+        document.body.innerHTML = message
+    </script>
+    
+</body>
+</html>
