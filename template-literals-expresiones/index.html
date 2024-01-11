@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Literals - expresiones</title>
+</head>
+<body>
+    <script>
+        const nombre = 'Patricio';
+        console.log(`Mi nombre es ${nombre}`);
+        console.log(`Este es el ${'Curso de JavaScript para React'}`)
+        console.log(`Mi nombre es ${x = 'leonidas'}`) 
+        //aca es raro por que se guarda la variable x en window.x
+        // x = leonidas
+        console.log(`Nombre con funcion -> ${(function name() { return 'Leo' }) ()}`)
+        // Necesito ejecutar la funcion para que funcione
+        // autoejecutar la funcion () la ponemos entre parentesis y luego ejecutamos ()
+        console.log(`Sin nombre en la funcion ${(function () { return 'Leon'}) ()}`)
+        console.log(`Con Arrow function ${(() => { return 'Leon Arrow'}) () }`)
+        // Si queremos poner una expresion de control no funcionaria, pero el truco es con un ternario
+        // console.log(`Expresion de control ${if (true) { console.log('leo')}}`)
+
+        console.log(`Mi nombre es ${true && 'leo ternario'}`)
+        console.log(`Suma ternaria ${3+5 === 8 && 'león ternario'}`)
+        console.log(`Mi nombre es ${false ? 'leo true' : 'leo false'}`)
+        // Cuando queremos iterar una lista de elementos dentro de un JSX
+        // iteramos cada uno de estos elementos, y por cada elemento vamos a tener una letra
+        // devuelve un array pero se convierte automaticamente en toString()
+        console.log(`Mapeo de array ${['ananá', 'banana'].map((letra) => `${letra}-styled`)}`)
+        console.log(`Mi nombre es ${['a', 'b'].map(letra => `${letra}-styled`)}`)
+        //Se metio otro template literal dentro del template literal que mapea el arreglo
+
+        // COn las expresiones podemos hacer muchas cosas, no solamente guardar una variable e imprimirla
+        // Aplicar logica, etc. es menos legible pero posible.
+    </script>
+    
+</body>
+</html>
