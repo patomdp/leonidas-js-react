@@ -9,30 +9,41 @@
     <script>
         const nombre = 'Patricio';
         console.log(`Mi nombre es ${nombre}`);
-        console.log(`Este es el ${'Curso de JavaScript para React'}`)
-        console.log(`Mi nombre es ${x = 'leonidas'}`) 
+        console.log(`Tengo ${35} años`);
+        console.log(`Este es el ${'Curso de JavaScript para React'}`);
+        console.log(`Mi nombre es ${x = 'leonidas'}`); 
+        // x no esta como constante ni como variable ni nada
         //aca es raro por que se guarda la variable x en window.x
         // x = leonidas
-        console.log(`Nombre con funcion -> ${(function name() { return 'Leo' }) ()}`)
-        // Necesito ejecutar la funcion para que funcione
-        // autoejecutar la funcion () la ponemos entre parentesis y luego ejecutamos ()
-        console.log(`Sin nombre en la funcion ${(function () { return 'Leon'}) ()}`)
-        console.log(`Con Arrow function ${(() => { return 'Leon Arrow'}) () }`)
-        // Si queremos poner una expresion de control no funcionaria, pero el truco es con un ternario
-        // console.log(`Expresion de control ${if (true) { console.log('leo')}}`)
 
-        console.log(`Mi nombre es ${true && 'leo ternario'}`)
-        console.log(`Suma ternaria ${3+5 === 8 && 'león ternario'}`)
-        console.log(`Mi nombre es ${false ? 'leo true' : 'leo false'}`)
+        // Funciones
+        // Necesito ejecutar la funcion para que funcione
+        console.log(`Funcion con nombre -> ${(function name() { return 'Leo' }) ()}`);
+        // autoejecutar la funcion () la ponemos entre parentesis y luego ejecutamos ()
+        console.log(`Funcion sin nombre ->  ${(function () { return 'Leon funcion sin nombre'}) ()}`);
+        console.log(`Funcion Con Arrow function -> ${(() => { return 'Leon Arrow Function'}) () }`);
+        // Si queremos poner una expresion de control no funcionaria (if), pero el truco es con un ternario
+        // console.log(`Expresion de control ${if (true) { console.log('leo')}}`)
+        // console.log(`Funcion con alert ${alert('Pene')}`);
+        console.log(`Funcion salchicha -> ${ (function salchicha() { return 7+5 }) () }`);
+
+        console.log(`Mi nombre es ${true && 'leo ternario'}`);
+        console.log(`Suma ternaria ${3+5 === 8 && 'león ternario'}`);
+        // Los ternarios funcionan bien como estructura de control
+        console.log(`Mi nombre es ${false ? 'leo true' : 'leo false'}`);
         // Cuando queremos iterar una lista de elementos dentro de un JSX
+        // Si queremos tener datos dinamicos
         // iteramos cada uno de estos elementos, y por cada elemento vamos a tener una letra
         // devuelve un array pero se convierte automaticamente en toString()
-        console.log(`Mapeo de array ${['ananá', 'banana'].map((letra) => `${letra}-styled`)}`)
-        console.log(`Mi nombre es ${['a', 'b'].map(letra => `${letra}-styled`)}`)
+        console.log(`mapeo de array con template ${['a', 'b'].map(letra => `${letra}-styled`)}`);
+        console.log(`Mapeo de array ${['ananá', 'banana'].map((letra) => `${letra}-styled`)}`);
         //Se metio otro template literal dentro del template literal que mapea el arreglo
 
         // COn las expresiones podemos hacer muchas cosas, no solamente guardar una variable e imprimirla
         // Aplicar logica, etc. es menos legible pero posible.
+        // Otra manera de aplicar un ternario
+        console.log(`Mi nombre es ${(() => { return false })() ? 'leo true' : 'leo false'}`);
+        console.log(`Mi nombre es ${(() => { return true })() ? 'leo true' : 'leo false'}`);
     </script>
     
 </body>
