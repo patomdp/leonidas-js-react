@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tagged Templates</title>
+    <title>5 - Tagged Templates</title>
     <style>
         body {
             display: flex;
@@ -17,26 +18,37 @@
             text-shadow: 1px 1px rgba(0, 0, 0, .5);
             font-size: 2em;
         }
-        strong{
+
+        strong {
             color: #f5e960;
             padding: .15em .4em;
             background: #dfb2f4;
             border-radius: 20px;
             border: solid 2px #f2f5ff;
         }
+
+        p {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: center;
+        }
     </style>
 </head>
+
 <body>
     <!-- <p>El trabajo duro supera al talento natural</p> -->
     <!-- Aplicamos antes de que se acabe el body -->
     <script>
         // llamamos una funcion con los backticks
         const nombre = "Pene"
+        // los tagged templates llevan como primer parametro los strings
         function taggedTemplate(strings, param1, param2) {
             console.log(strings, param1, param2);
         }
 
-        taggedTemplate`Hola ${nombre} ${'!'}` 
+        taggedTemplate`Hola ${nombre} ${'!'}`
 
         // Podemos hacerlo con un rest operator
         // ...dynamicValues
@@ -48,37 +60,48 @@
         dynamicTemplate`PENE 1 PENE 2 ${'dynamic 1'} ${'dynamic 2'}`
         // Ahora dynamic 1 y 2 son un array tambien
 
-        function trabajoTalento(strings, ...dynamicValues){
+        function trabajoTalento(strings, ...dynamicValues) {
             console.log(strings, dynamicValues);
             let newContent = '';
             let composedContent = '';
             // iterar los strings
             strings.forEach((element, index) => {
                 // para que no ponga undefined, que exista
-                if(dynamicValues[index]){
+                if (dynamicValues[index]) {
 
                     // console.log(element, index);
                     // esto es trabajo duro y talento natural
                     // console.log(dynamicValues[index]);
                     // clg de mi string
                     // console.log(strings);
+
+                    // ss
                     const strong = `<strong>${dynamicValues[index]}</strong>`
-                    newContent = newContent + element + strong
+                    newContent = newContent + element + strong;
 
                 }
                 // Tambien puedo hacerlo con ternarios
-                const strong2 = dynamicValues[index] ? `<strong>${dynamicValues[index]}</strong>` : ``;
+                const strong2 = dynamicValues[index] ? `<strong>${dynamicValues[index]}</strong>` : '';
                 // newContent = newContent + element + strong2;
                 composedContent += `${element} ${strong2}`;
             });
             console.log(composedContent);
             // console.log(newContent);
-            return `<p>${composedContent}</p>`
+            return `<p>${composedContent}</p>`;
         }
 
-        const message= trabajoTalento`El ${'trabajo duro'} supera al ${'talento natural'}`
-        document.body.innerHTML = message
+        const message = trabajoTalento`El ${'trabajo duro'} supera al ${'talento natural'}`;
+        document.body.innerHTML = message;
+
+        // Los strings van a ser un array de strings
+        // mi segundo parametro no engloba a todos los valores dinamicos
+        function testTags(strings, ...dynamicValues) {
+            console.log('TestTags working!');
+            console.log(strings, dynamicValues);
+        }
+        testTags`Hola from ${'TestTags'} ${'RestOperator'}`;
     </script>
-    
+
 </body>
+
 </html>

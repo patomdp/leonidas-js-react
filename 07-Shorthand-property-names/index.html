@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShortHand Property Names</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <main>
+    <h1>
+      La mejor. <br>
+      Para los mejores
+    </h1>
+    <div class="hero">
+      <div class="wrapper">
+        <div class="hero-content">
+          <div class="mac"></div>
+          <div class="app">
+            <p>
+              <strong>
+                Precio:
+              </strong>
+              <span id="price">-</span>
+            </p>
+            <p>
+              <strong>
+                Precio oferta:
+              </strong>
+              <span id="offer">-</span>
+            </p>
+            <p>
+              <strong>
+                Precio Final:
+              </strong>
+              <span id="final-price">-</span>
+            </p>
+            <button class="button" id="make-offer">Regatear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+  const price = 2700;
+  const macbook = {
+    price,
+    // getters
+    get finalPrice() {
+      return this.price * 1.16
+    },
+
+    // getPrice: function(){}
+    // pero tambien funcionaria por shorthand property names
+    getPrice(){ console.log(this.price)}, 
+    // setters
+    set offer(offer) {
+      this.price -= offer
+    },
+    // vamos a hacer un "generador" siempre arrancan con *
+    // discount: *function(){}
+    *discount(offer) {
+      // existe una palabra reservada "yield" que es para un generador
+      // son como los valores que se van a devolver
+      // yield 'holamundo'
+      // yield 'hola estudiante'
+      // yield 'hola hola'
+      let price = this.finalPrice
+      // yield price -= offer
+      // yield price -= offer
+      // yield price -= offer
+      // Super truco de los generadores. Poner un loop infinito
+      while (true) {
+        // esto funciona SOLO en los generadores
+        yield price -= offer
+
+      }
+    }
+  }
+  
+  // podemos entrar a window.price por que  tiene ese ID
+  window.price.textContent = macbook.price;
+
+  // window.offer.textContent = macbook.price - macbook.offer ;
+  macbook.offer = 500
+  window.offer.textContent = macbook.price;
+
+  // Obtener precio final - inventar impuesto de 16%
+  // accedemos por que tiene guion, le quitamos el punto y lo metemos como array
+  window['final-price'].textContent = macbook.finalPrice;
+
+  // invoco el generador
+  const makeAnOffer = macbook.discount(15)
+  window['make-offer'].addEventListener('click', () => {
+    // Mi console log tambien se lo resta
+    // console.log('makeAnOffer: ', makeAnOffer.next());
+    // makeAnOffer:  {value: 'hola hola', done: false}
+
+    // console.log('click');
+    window['final-price'].textContent = makeAnOffer.next().value
+  })
+
+
+</script>
+</body>
+
+</html>

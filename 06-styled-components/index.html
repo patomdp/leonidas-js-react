@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <!-- <div id="container-loco"></div> -->
+    <script>
+        // el componente lo armará un template literal
+        function component(strings, ...dynamicValues) {
+            return 'valor';
+        }
+        const user = component``
+
+        // 1 renderiza el componente dentro del contendor
+        function render(component, container) {
+            container.innerHTML = component
+        }
+        // 2 puedo utilizar document.body pero no se recomienda
+        // 3 cuando tengo un elemento con ID como el caso de id="container" se me crea en window
+        // render('hola mundo!', window.container);
+        // 4 Estamos llamando a render pasandole user, que a su vez tiene la funcion component con tag templates
+        render(user, window.container);
+
+    </script>
+</body>
+</html>

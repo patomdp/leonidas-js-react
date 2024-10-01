@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Avanzado</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        function component(strings, ...dynamicValues) {
+           return function(props) { 
+                // voy a agenerar una copia en memoria de ese array, por que sino no lo puedo modificar
+                let newContent = strings.slice();
+                console.log('newContent: ', newContent);
+                dynamicValues.forEach((value, index) => {
+                    newContent[index] += props[value];
+                });
+                // voy a mergear todo ese string en un array con un valor vacio
+                return newContent.join('');
+            }
+        }
+
+        const tags = [
+            "div","a","h1","h2","h3","p",
+        ]
+
+        function runTags(){
+            tags.forEach((tag, index) => {
+                // console.log('tag: ', tag);
+                console.log(`${index}: ${tag}`);
+                // console.log();
+            });
+        }
+
+        runTags();
+
+        // console.log(object);
+
+
+        const styled = {
+            h1: function (styles) {
+                return function(content) {
+                    return`
+                        <h1 style="${styles}">
+                            ${content}
+                        </h1>
+                    `
+                }
+            },
+            h2: (styles) => {
+                return (content) => {
+                    return`
+                        <h2 style="${styles}">
+                            ${content}
+                        </h2>
+                    `
+                }
+            },
+            div: '',
+            p: '',
+        }
+
+        // const styled2 = {
+
+        // }
+        // function dynamicTag(tag) {
+        //     return 
+        // }
+
+        const TitleStyled = styled.h1`
+            color: orange;
+            font-family: system-ui;
+            font-size: 50px;
+            text-shadow: 2px 2px 0 black;
+            // line-height: 100vh;
+        `;
+
+        const SubTitleStyled = styled.h2`
+            color: red;
+            border: solid black;
+        `;
+
+        const props = {
+            message: 'No te Rindas',
+            name: 'Pato',
+        }
+
+        // el componente lo armará un template literal
+        // la etiqueta marquee hace como una animacion de derecha a izquierda
+        // const Title = component`<marquee> ${'message'} ${'name'} </marquee> `(props);
+        const Title = component`<p> ${'message'} ${'name'} </p> `(props);
+        const SubTitle = component`hola`(props);
+
+        function render(component, container) {
+            container.innerHTML += component
+        }
+        // Aca le digo lo que quiero renderizar, por ejemplo user
+        render(TitleStyled(Title), window.container);
+        render(SubTitleStyled(SubTitle), window.container);
+
+    </script>
+</body>
+</html>
