@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux</title>
+</head>
+<body>
+    <script>
+        
+        const createStore = (reducer, initialState) => {
+            let state = initialState;
+            const getState = _ => state;
+            
+            const dispatch = (action) => {
+
+            }
+            const subscribe = () => {
+
+            }
+            return {
+                getState,
+                dispatch,
+                subscribe,
+            }
+        }
+        const reducer = () => {
+
+        }
+        const store = createStore(reducer, 'estado inicial de la app');
+        
+        // store.dispatch(action) // donde vamos a mandar acciones, que van a cambiar mi estado (bool, obj, string, etc)
+        // store.getState() // que me va a devolver mi estado
+        // store.subscribe() // donde le voy a mandar una funcion y cada vez que cambie mi funcion de subs se llamaria y activaria las otras fns
+        // reducer() // fn que evalua lo que esta pasando en mi estado.
+
+        // podria mandarle un obj, un boolean, etc.
+        store.dispatch('voy a cambiar algo');
+
+
+    </script>
+</body>
+</html>
